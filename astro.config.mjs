@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astro-paper.pages.dev/", // replace this with your deployed domain
+  site: "https://tobs.pages.dev/", // replace this with your deployed domain
   integrations: [
     tailwind({
       config: {
@@ -28,7 +28,7 @@ export default defineConfig({
       ],
     ],
     shikiConfig: {
-      theme: "one-dark-pro",
+      theme: "github-dark",
       wrap: true,
     },
     extendDefaultPlugins: true,
