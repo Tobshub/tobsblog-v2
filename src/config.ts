@@ -2,12 +2,12 @@ import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
   website: "https://astro-paper.pages.dev/",
-  author: "Sat Naing",
-  desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
-  title: "AstroPaper",
+  author: "Tobani Esan-George",
+  desc: "Portfolio and Blog",
+  title: "Tobsblog",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
-  postPerPage: 3,
+  postPerPage: 5,
 };
 
 export const LOCALE = ["en-EN"]; // set to [] to use the environment default
@@ -22,39 +22,39 @@ export const LOGO_IMAGE = {
 export const SOCIALS: SocialObjects = [
   {
     name: "Github",
-    href: "https://github.com/satnaing/astro-paper",
-    linkTitle: ` ${SITE.title} on Github`,
+    href: "https://github.com/Tobshub",
+    linkTitle: "Github",
     active: true,
   },
   {
     name: "Facebook",
-    href: "https://github.com/satnaing/astro-paper",
-    linkTitle: `${SITE.title} on Facebook`,
-    active: true,
+    href: "https://github.com/Tobshub",
+    linkTitle: "Facebook",
+    active: false,
   },
   {
     name: "Instagram",
-    href: "https://github.com/satnaing/astro-paper",
-    linkTitle: `${SITE.title} on Instagram`,
-    active: true,
+    href: "https://github.com/Tobshub",
+    linkTitle: "Instagram",
+    active: false,
   },
   {
     name: "LinkedIn",
-    href: "https://github.com/satnaing/astro-paper",
-    linkTitle: `${SITE.title} on LinkedIn`,
+    href: "https://www.linkedin.com/in/tobani-esan-george",
+    linkTitle: "LinkedIn",
     active: true,
   },
   {
     name: "Mail",
-    href: "mailto:yourmail@gmail.com",
-    linkTitle: `Send an email to ${SITE.title}`,
-    active: false,
+    href: "mailto:tobanigeorge@gmail.com",
+    linkTitle: `Send an email to ${SITE.author}`,
+    active: true,
   },
   {
     name: "Twitter",
-    href: "https://github.com/satnaing/astro-paper",
-    linkTitle: `${SITE.title} on Twitter`,
-    active: false,
+    href: "https://twitter.com/tobani_io",
+    linkTitle: "Twitter",
+    active: true,
   },
   {
     name: "Twitch",
