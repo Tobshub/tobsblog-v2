@@ -8,11 +8,15 @@ tags:
   - beginner
   - twitch
   - tips
-ogImage: ""
+ogImage: "twitch software and dev ss.png"
 description: Why new developers should frequent the Software and Game Developer category on twitch
 ---
 
 For a long time, twitch was seen as a place for streaming and watching games, but it’s not just for gamers. Among other things, as a programmer, you can also benefit by watching Twitch streams. The “Software and Game Development” category is full of smart and wonderful people - both streamers and chat members(like me).
+
+<div>
+    <img src="/twitch software and dev ss.png">
+</div>
 
 There are many benefits of watching dev-twitch, including:
 
