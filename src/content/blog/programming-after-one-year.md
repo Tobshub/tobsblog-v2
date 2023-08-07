@@ -103,7 +103,7 @@ I plan to start streaming someday and help others they way I've been helped on d
 
 ## To SQL or to NoSQL
 
-Becoming a developer these days is tuff as there as so many opinions out there and barely have enough experience to form your own.
+Becoming a developer these days can be tough as there as so many opinions out there and barely have enough experience to form your own.
 
 SQL vs NoSQL is an example of that. To put it simply, I don't care. As a broke dev learning backend, I'll say use anyone that is easiest for you to host for free. MongoDB has Atlas, MySQL has planetscale and you could probably do any in a docker container leeching off some PaaS's free tier, but for that you'd need to know Docker.
 
@@ -112,7 +112,7 @@ Understanding databases is definitely an important skill to learn, that path I t
 ## I'm Multilingual
 
 After some time, one begins to wander, "What else lies beyong the JavaScript horizon?".
-Sure enough, I went beyong the horizon and found "paradise".
+Sure enough, I went beyond the horizon and found "paradise".
 
 Rust, Golang, C/C++. I'm learning the three, my favourite of which is Golang. To me, Go feels like C (which I love a lot) plus JS/TS, which makes it really comfortable for me.
 Rust can be very enjoyable but sometimes I feel like my brain has to do so much gymnastics just to write a simple rust program.
@@ -128,7 +128,7 @@ At the time my very old laptop which I referred to as the potato-top was become 
 
 While on tiny 11 and enjoying my dev experience, I decided to learn Docker. It was while trying to get Docker to work on tiny 11 that I find out that the stuff tiny 11 strips out includes what Docker needs to run on windows. So with my new found OS switching powers, I decided to try out linux.
 
-It was better for devs anyways and I'd have to learn more than just bash commands at some point. And one of my favourite dev-twitch streamers had just made the Windows-to-Linux switch at the time, so I decided to use the same distro - Kubuntu.
+It was better for devs anyway and I'd have to learn more than just bash commands at some point. And one of my favourite dev-twitch streamers had just made the Windows-to-Linux switch at the time, so I decided to use the same distro - Kubuntu.
 
 Since it was an older computer, with a lot of issues, I had to do a lot of troubleshooting and trial and error - which included changing some BIOS settings - before I could install and actually run Kubuntu. At some point, I just had no operating system on the laptop, with what I thought was a broken ISO on the bootable usb drive I had. Needless to say I was pretty scared.
 
