@@ -11,7 +11,7 @@ ogImage: ""
 description: My journey and thoughts on programming, the online tech space, and life in general after one year of Coding
 ---
 
-I've been coding for a bit over a year now, and over this rollercoaster of a year I've learned a lot. I've also taken many paths, some of which I jumped off, some of which I had to walk back on and some of which I'm still crawling along.
+I've been coding for a bit over a year now, and over this roller coaster of a year I've learned a lot. I've also taken many paths, some of which I jumped off, some of which I had to walk back on and some of which I'm still crawling along.
 
 ## Table of contents
 
@@ -23,13 +23,13 @@ Learning JavaScript determined the first few tech youtubers I watched and the ch
 There was one video I finished though. It was [Learn JavaScript - Full Course for Beginners](https://youtu.be/PkZNo7MFNFg) on the freeCodeCamp youtube channel. It managed to cram the basics of JavaScript into me and I was able to start making basic JavaScript programs and using JavaScript to build webpages.
 
 Next I built some simple projects using [Web Dev Simplified](https://www.youtube.com/c/webdevsimplified) tutorials.
-I'll say the only reason these were useful to me is because of the type of learner I am. After watching and following along the tutorial, I didn't stop there. I always made sure to try and build the tutorial project again but without watching the video, only referecing a part of the video when I was stuck or didn't understand something.
+I'll say the only reason those were useful to me is because of the type of learner I am. After watching and following along the tutorial, I didn't stop there. I always made sure to try and build the tutorial project again but without watching the video, only referencing a part of the video when I was stuck or didn't understand something.
 This helped to cull some wrong assumptions or correct misunderstandings I got from the initial build of the tutorial project. It also allowed me to put my own spin on things and develop a _relatively_ deeper understanding of what I was doing.
 
 Somehow I moved from making simple websites and browser games to building websites that made use of APIs.
 I built a simple weather app, as all JS devs do, and I gained some understanding of how REST APIs work - and like every noob, I had my API key in my code as a variable.
 
-At this point, I was already learning git and Github putting all my projects in repositories of their own and slowly understanding the importance of version history.
+At this point, I was already learning git and Github, putting all my projects in repositories of their own and slowly understanding the importance of version history.
 
 I had done some frontend challenges from [Frontend Mentor](https://www.frontendmentor.io/) and had gotten some tips to improve my use of semantic HTML and CSS. Because Frontend Mentor requires you to host your code, on Github Pages for example, I had to learn a bit about that. As a beginner, I was super excited how easy it was to make a "website" I had made available for others to see and use.
 
@@ -40,20 +40,20 @@ I believe I also used [scrimba](https://scrimba.com/) a bit.
 From the freeCodeCamp video, I learnt about [their website](https://www.freecodecamp.org/) and I started with their HTML/CSS course, to refresh on my knowledge and update myself on any changes, which was definitely useful because I learnt so much more about HTML and CSS than I had when I first learnt it about 5 years ago now.
 Then I took their JavaScript course, which was basically the same as the youtube video they had, but reading the chapters and following it all also exposed some things to me.
 
-After the doing the JavaScript again, and completing the projects, I move on to their React course. At the time, it was still class components and function components had already become the norm (which I didn't know). However, this was not a waste at all. To this day, I believe my understanding of react class components helped me transition to function components faster and with a better overall understanding of react.
+After doing the JavaScript course again, and completing the projects, I move on to their React course. At the time, it was still class components and function components had already become the norm (which I didn't know). However, this was not a waste at all. To this day, I believe my understanding of react class components helped me transition to function components faster and with a better overall understanding of react.
 
 Just btw, I remember there was a time I tried to run react locally, setting it up myself LOL. I read so many articles, tried so many things, but just couldn't get it to work. I 100% did not understand what I was doing. I was bombarded with stuff about babel and webpack and node_modules and and and I had no idea what any of those were. So I stuck to doing the react lessons on freeCodeCamp.
 
 ## Deez Nodes
 
-Node... node... node. I had unknowingly been using NodeJS for a while, but I first became conscious of it when I came across it in the list of things I'd be taught in a coding bootcamp a friend recommended.
+Node... Node... Node. I had unknowingly been using NodeJS for a while, but I first became conscious of it when I came across it in the list of things I'd be taught in a coding bootcamp a friend recommended.
 
 I was told that I'd be able to get a coding job after doing that bootcamp, but I AM STILL CODING JOBLESS. Anyways, I chose the fullstack track for the bootcamp because I already had a good idea about basic frontend, but thought I could always learn something from a professional teaching me, and I also wanted to learn backend.
 
-So I joined the bootcamp and the frontend classes were so disappointing and in no way challenging. I learnt absolutely nothing from the frontend classes. But the backend classes, although not challenging either, laid the foundation for teaching me NodeJS. They explained somethings to us, which allowed me to kickstart my self learning journey of NodeJS. I used replit for a while, before setting up node on my machine. I had already become somewhat familiar with the window terminal and of course, I was using git bash. So I setup node, and before long I dove into backend things - not very deep though.
+So I joined the bootcamp and the frontend classes were so disappointing and in no way challenging. I learnt absolutely nothing from the frontend classes. But the backend classes, although not challenging either, laid the foundation for teaching me NodeJS. They explained some things to us, which allowed me to kick start my self learning journey of NodeJS. I used replit for a while, before setting up node on my machine. I had already become somewhat familiar with the window terminal and of course, I was using git bash. So I setup node, and before long I dove into backend things - not very deep though.
 
 I learnt how to build simple APIs with ExpressJS, and how to build simple CRUD apps with MongoDB. I experimented a lot with that and also did freeCodeCamp's nodejs lessons. The excitment was intoxicating. I felt like I could build anything with my new backend powers.
-So... of course I tried. I attempted chat apps, social media apps and the likes. Each time encountering new problems and obstacles like socket.io for web sockets and actually getting users - I have none :(.
+So... Of course I tried. I attempted chat apps, social media apps and the likes. Each time encountering new problems and obstacles like socket.io for web sockets and actually getting users - I have none :(.
 
 ## LeetCode Warrior
 
