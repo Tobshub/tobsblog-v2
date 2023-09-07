@@ -1,0 +1,22 @@
+---
+import { PROJECTS } from "@config"
+---
+
+<h2>Projects</h2>
+<ul>
+  {
+    PROJECTS.map((project) => (
+      <li>
+        {project.link ? (
+          <a href={project.link} title={project.description}>{project.name}</a>
+        ) : 
+          <span title={project.description}>{project.name}</span>
+        }
+        {project.github ? 
+          (<a href={project.github}>(View on Github)</a>)
+          : null
+        }
+      </li>
+    ))
+  }
+</ul>

@@ -17,5 +17,3 @@ This page contains a few projects (and coding doodles) that I'd like to show you
 - MongoDB, PostgreSQL, MySQL and SQLite
 - Golang
 - Rust (don't ask me to write any though!)
-
-## Projects

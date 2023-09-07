@@ -10,6 +10,42 @@ export const SITE: Site = {
   postPerPage: 5,
 };
 
+export const PROJECTS = [
+  {
+    name: "Tuu-Duu",
+    github: "https://github.com/Tobshub/Tuu-Duu",
+    link: "https://tuu-duu.netlify.app",
+    description: "Project planner and habit tracker web app",
+    active: true,
+  },
+  {
+    name: "TobsDB",
+    github: "https://github.com/Tobshub/tobsdb",
+    description:
+      "A database built in in Golang, with a custom schema declaration syntax and easy to use queries",
+    active: true,
+  },
+  {
+    name: "Present Worship",
+    link: "https://presentworship.pages.dev",
+    description: "Presentation software for Church to use during services",
+    active: true,
+  },
+  {
+    name: "Tobsmg",
+    description: "A private image server I built to host and share images",
+    github: "https://github.com/Tobshub/remote-img",
+    active: true,
+  },
+  {
+    name: "Tobsdraw",
+    description: "A simply drawing app built using html canvas",
+    active: true,
+    github: "https://github.com/Tobshub/tobsdraw",
+    link: "https://tobsdraw.vercel.app",
+  },
+];
+
 export const LOCALE = ["en-EN"]; // set to [] to use the environment default
 
 export const LOGO_IMAGE = {
