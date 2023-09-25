@@ -3,7 +3,7 @@ pubDatetime: 2023-08-25T12:00:00Z
 title: SQL killer - TDB
 postSlug: tdb-the-sql-killer
 featured: true
-draft: false
+draft: true
 tags:
   - sql
   - tobsdb
