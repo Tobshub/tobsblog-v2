@@ -3,7 +3,7 @@ pubDatetime: 2023-08-07T12:00:00Z
 title: I've been Coding for one year, Here's what I've learned
 postSlug: programming-after-one-year
 featured: true
-draft: false
+draft: true
 tags:
   - programming
   - journey
