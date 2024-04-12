@@ -9,14 +9,14 @@ tags:
   - rust
   - computer-vision
   - image-processing
-ogImage: "canny-edge-detection/7.png"
+ogImage: "canny-edge-detection/ogImage.png"
 description: An implementation of the Canny Edge Detection algorithm in Rust.
 ---
 
 # Edging - A Canny Edge Detection Implementation
 
 <div>
-    <img src="/canny-edge-detection/1.png" />
+    <img src="https://github.com/Tobshub/edging/blob/main/owl.png" />
 </div>
 
 For the past two months or so, I’ve only done work related programming. So to take the edge off, I decided to do some recreational programming and it popped into my head to try to implement edge detection. It’s something I’d never done before, and knew nothing about, so I knew it was sure to be a fun learning experience.
@@ -91,7 +91,7 @@ fn grayscale(src: &[u8], px_width: usize) -> Vec<u8> {
 ```
 
 <div>
-    <img src="/canny-edge-detection/2.png" />
+    <img src="https://github.com/Tobshub/edging/blob/main/owl-grayscale.png" />
 </div>
 
 ## Step 2: Gaussian Blur
