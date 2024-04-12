@@ -16,7 +16,7 @@ description: An implementation of the Canny Edge Detection algorithm in Rust.
 # Edging - A Canny Edge Detection Implementation
 
 <div>
-    <img src="https://github.com/Tobshub/edging/blob/main/owl.png" />
+    <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl.png" />
 </div>
 
 For the past two months or so, I’ve only done work related programming. So to take the edge off, I decided to do some recreational programming and it popped into my head to try to implement edge detection. It’s something I’d never done before, and knew nothing about, so I knew it was sure to be a fun learning experience.
@@ -91,7 +91,7 @@ fn grayscale(src: &[u8], px_width: usize) -> Vec<u8> {
 ```
 
 <div>
-    <img src="https://github.com/Tobshub/edging/blob/main/owl-grayscale.png" />
+    <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl-grayscale.png" />
 </div>
 
 ## Step 2: Gaussian Blur
@@ -182,24 +182,21 @@ fn gaussian_blur(mut src: Vec<u8>, image_width: i32) -> Vec<u8> {
 In our implementation, we assume that the input image byte array has a pixel width of 1 (i.e. grayscale has been applied). This allows us to simplify the implementation by taking every index of the byte array as a sole pixel of the image. We first apply the kernel in the x dimension and store the results in `dst`. Then we apply the kernel in the y dimension and store the results back in `src` (as we don't want the results from previous iterations in the y dimension to affect our results).
 
 <div>
-  <img src="https://github.com/Tobshub/edging/blob/main/owl-gaussian.png" />
+  <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl-blur.png" />
 </div>
 
 ## Step 3: Sobel Filter
 
-The [Sobel-Feldman operator](https://en.wikipedia.org/wiki/Sobel_operator) is used in this step to find the intensity gradients of the image. This is done by convolving (applying) 3x3 kernels in the _x_ and _y_ direction. 
+The [Sobel-Feldman operator](https://en.wikipedia.org/wiki/Sobel_operator) is used in this step to find the intensity gradients of the image. This is done by convolving (applying) 3x3 kernels in the _x_ and _y_ direction.
 
 ![convolution operations](https://wikimedia.org/api/rest_v1/media/math/render/svg/2c013324e3b5a4a98f3205663020d6dea32dbff8)
 
 > Where **A** is the source image.
 
 The results of the kernel convolutions are used to calculate:
-- the Gradient magnitude
-  
-  ![gradient magnitude formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/23ae6772c5f58751fc6014b71d6adafb30a31c79)
-  
-- and the Gradient direction 
 
-  ![gradient direction formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/b3e4efe0d943867ba795d1a960f36d71c1812880)
+- the Gradient magnitude ![gradient magnitude formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/23ae6772c5f58751fc6014b71d6adafb30a31c79)
+
+- and the Gradient direction ![gradient direction formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/b3e4efe0d943867ba795d1a960f36d71c1812880)
 
 These two values (**G** and **Θ**) are crucial for the next step.
