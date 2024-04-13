@@ -26,8 +26,8 @@ export const PROJECTS = [
     active: true,
   },
   {
-    name: "Present Worship",
-    link: "https://presentworship.pages.dev",
+    name: "Worship Manager",
+    link: "https://worshipmanager.org",
     description: "Presentation software for Church to use during services",
     active: true,
   },
