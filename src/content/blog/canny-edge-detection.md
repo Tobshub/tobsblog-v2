@@ -1,9 +1,9 @@
 ---
-pubDatetime: 2024-04-12T12:00:00Z
+pubDatetime: 2024-04-13T12:00:00Z
 title: Edging with Canny
 postSlug: canny-edge-detection
 featured: true
-draft: true
+draft: false
 tags:
   - algorithm
   - rust
@@ -359,3 +359,97 @@ Also, when setting the value of each pixel, we normalise its value relative to t
 <div>
   <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl-non-max.png" />
 </div>
+
+## Step 5: Double Threshold
+
+The Double threshold step is simply and straighforward. We set a low threshold and a high threshold. Every gradient magnitude value below the low threshold gets set to 0. Every gradient magnitude value betweeen the low and high threshold gets set to the same low value and we consider them "weak" edges. And finally every gradient magnitude value above the high threshold gets set to the same high value (usually 255) and we consider them "strong" edges.
+
+```rust
+fn double_threshold(src: &[u8]) -> Vec<u8> {
+    let mut dst = vec![0; src.len()];
+
+    let max = *src.iter().max().unwrap();
+    let high = max as f32 * 0.9 / 10.0;
+    let low = max as f32 * 0.5 / 10.0;
+
+    (0..src.len()).for_each(|px| {
+        let src_px = src[px] as f32;
+        if src_px < low {
+            dst[px] = 0;
+        } else if src_px > high {
+            dst[px] = 255;
+        } else {
+            dst[px] = 25;
+        }
+    });
+
+    dst
+}
+```
+
+It is important to make the threshold values relative to the maximum obtained gradient magnitude value.
+
+Why do we need this step? This is because the previous step (Non-max suppression) is easily susceptible to image noise. From this step we can be sure that every "strong" edge is a true edge, and we will utilize this fact and our "weak" edges in the next step.
+
+<div>
+  <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl-dt.png" />
+</div>
+
+## Step 6: Hysteresis
+
+The sixth and final step in the Canny edge detection algorithm. We use the results from the previous step to ensure that only true edges remain in the final image.
+
+We check the neighboring pixels of each "weak" edge pixel, and if any of them are "strong" edge pixels, then we turn the "weak" edge pixel to a "strong" edge pixel (because we can be sure it was not produced from noise). We do this "in-place" because we want previously weak pixels that are now "strong" to also make their neighboring pixels strong.
+
+```rust
+fn hysteresis(mut src: Vec<u8>, image_width: i32) -> Vec<u8> {
+    (0..src.len()).for_each(|px| {
+        if src[px] != 255 && src[px] != 0 {
+            let blob = [
+                // top
+                px as i32 - image_width - 1,
+                px as i32 - image_width,
+                px as i32 - image_width + 1,
+                // left and right
+                px as i32 - 1,
+                px as i32 + 1,
+                // bottom
+                px as i32 + image_width - 1,
+                px as i32 + image_width,
+                px as i32 + image_width + 1,
+            ];
+
+            for neighbor_px in blob {
+                if neighbor_px < 0 || neighbor_px >= src.len() as i32 {
+                    continue;
+                }
+                match src[neighbor_px as usize] {
+                    255 => {
+                        src[px] = 255;
+                        break;
+                    }
+                    _ => {
+                        src[px] = 0;
+                    }
+                }
+            }
+        }
+    });
+
+    src
+}
+```
+
+<div>
+  <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl-dt.png" />
+</div>
+
+## Conclusion
+
+All-in-all, this was a very fun exercise. I learnt a lot, about computer vision, image processing and just math in general from research on specific technical terms used.
+
+It was super fun and cool to see how the image changed in each step, and how changing some values (or making some mistakes in the implementation) affected the resulting image.
+
+If you would like to see the full code (including the image loading and drawing the results), check out [the repo on my github](https://github.com/tobshub/edging).
+
+Thanks for reading and stay coding.
