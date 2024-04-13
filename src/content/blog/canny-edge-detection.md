@@ -199,4 +199,81 @@ The results of the kernel convolutions are used to calculate:
 
 - and the Gradient direction ![gradient direction formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/b3e4efe0d943867ba795d1a960f36d71c1812880)
 
+The gradient direction is further rounded to one of 0, 45, 90 or 135 degrees.
 These two values (**G** and **Θ**) are crucial for the next step.
+
+```rust
+fn sobel_filter(src: &[u8], image_width: i32) -> Vec<i32> {
+    let mut dst = vec![0; src.len() * 2];
+
+    let kernel_x = [[1, 0, -1], [2, 0, -2], [1, 0, -1]];
+    let kernel_y = [[1, 2, 1], [0, 0, 0], [-1, -2, -1]];
+
+    // apply kernel in x direction
+    (0..src.len()).for_each(|px| {
+        let mut new_pixel: i32 = 0;
+
+        for x in -1..=1 {
+            for y in -1..=1 {
+                let kernel_value = kernel_x[(x + 1) as usize][(y + 1) as usize];
+
+                let neighbor_px = px as i32 + x + (y * image_width);
+
+                if neighbor_px < 0 || neighbor_px >= src.len() as i32 {
+                    continue;
+                }
+
+                let npx = src[neighbor_px as usize] as i32 * kernel_value;
+                new_pixel += npx;
+            }
+        }
+
+        dst[px * 2] = new_pixel;
+    });
+
+    // apply kernel in y direction
+    (0..src.len()).for_each(|py| {
+        let mut new_pixel: i32 = 0;
+
+        for x in -1..=1 {
+            for y in -1..=1 {
+                let kernel_value = kernel_y[(x + 1) as usize][(y + 1) as usize];
+
+                let neighbor_px = py as i32 + x + (y * image_width);
+
+                if neighbor_px < 0 || neighbor_px >= src.len() as i32 {
+                    continue;
+                }
+
+                let npx = src[neighbor_px as usize] as i32 * kernel_value;
+                new_pixel += npx;
+            }
+        }
+
+        // calculate gradient magnitude and gradient direction
+        let ndst = (dst[py * 2].pow(2) + new_pixel.pow(2)) as f32;
+        let angle = (new_pixel as f32)
+            .atan2(dst[py * 2] as f32)
+            .to_degrees()
+            .abs();
+        dst[py * 2] = ndst.sqrt().ceil() as i32;
+        // round angle
+        let angle = match angle {
+            0.0..=22.5 | 157.5..=180.0 => 0,
+            22.5..=67.5 => 45,
+            67.5..=112.5 => 90,
+            112.5..=157.5 => 135,
+            _ => panic!("Unexpected angle: {}", angle),
+        };
+        dst[py * 2 + 1] = angle;
+    });
+
+    dst
+}
+```
+
+<div>
+  <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl-sobel-filter.png" />
+</div>
+
+## Step 4: Non-Max Suppression
