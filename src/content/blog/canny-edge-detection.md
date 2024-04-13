@@ -277,3 +277,85 @@ fn sobel_filter(src: &[u8], image_width: i32) -> Vec<i32> {
 </div>
 
 ## Step 4: Non-Max Suppression
+
+This step (also called gradient magnitude thresholding or lower bound cut-off suppression) entails using the results from the sobel filter step to determine if a pixel is truly an edge. 
+
+We check each pixel's gradient magnitude is the greatest of its neighboring pixels in its gradient direction. If it does, then we preserve its value. Else, we set its value to zero.
+
+How do we know the neighboring pixels in its gradient direction? [Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector#Gradient_magnitude_thresholding_or_lower_bound_cut-off_suppression) can help us with that:
+
+<blockquote>
+
+- if the rounded gradient angle is 0° (i.e. the edge is in the north–south direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the east and west directions,
+
+- if the rounded gradient angle is 90° (i.e. the edge is in the east–west direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the north and south directions,
+
+- if the rounded gradient angle is 135° (i.e. the edge is in the northeast–southwest direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the north-west and south-east directions,
+
+- if the rounded gradient angle is 45° (i.e. the edge is in the northwest–southeast direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the north-east and south-west directions.
+</blockquote>
+
+With the above information, the implementation becomes simple:
+
+```rust
+fn gradient_thresholding(src: &[u8], image_width: usize) -> Vec<u8> {
+    let src = sobel_filter(src, image_width as i32);
+    let image_width = image_width * 2;
+    let mut dst = vec![0; src.len() / 2];
+
+    let sobel_max = *src.iter().max().unwrap();
+
+    let mut px = 0;
+    while px < src.len() {
+        let mut new_pixel = 0;
+
+        let angle = src[px + 1];
+        let mut cmp_pxs: [i32; 2] = [0; 2];
+        match angle {
+            0 => {
+                cmp_pxs[0] = px as i32 - 2;
+                cmp_pxs[1] = px as i32 + 2;
+            }
+            45 => {
+                cmp_pxs[0] = px as i32 - image_width as i32 + 2;
+                cmp_pxs[1] = px as i32 + image_width as i32 - 2;
+            }
+            90 => {
+                cmp_pxs[0] = px as i32 - image_width as i32;
+                cmp_pxs[1] = px as i32 + image_width as i32;
+            }
+            135 => {
+                cmp_pxs[0] = px as i32 - image_width as i32 - 2;
+                cmp_pxs[1] = px as i32 + image_width as i32 + 2;
+            }
+            _ => panic!("Unexpected angle: {}", angle),
+        };
+
+        for cmp_px in cmp_pxs {
+            if cmp_px < 0 || cmp_px >= src.len() as i32 {
+                continue;
+            }
+            if src[cmp_px as usize] > src[px] {
+                new_pixel = 0;
+                break;
+            }
+
+            new_pixel = src[px];
+        }
+
+        dst[px / 2] = ((new_pixel as f32 / sobel_max as f32) * 255.0) as u8;
+
+        px += 2;
+    }
+
+    dst
+}
+```
+
+Notice we 2x `image_width` and iterate by twos, this is because the length of the resulting vector from `sobel_filter` is two times the size of the input image byte array (where each pair of bytes represents a single pixel's gradient magnitude and gradient direction).
+
+Also, when setting the value of each pixel, we normalise its value relative to the maximum obtained pixel gradient magnitude fron applying the Sobel filter.
+
+<div>
+  <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl-non-max.png" />
+</div>
