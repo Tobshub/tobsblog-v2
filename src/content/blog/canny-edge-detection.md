@@ -19,23 +19,23 @@ description: An implementation of the Canny Edge Detection algorithm in Rust.
     <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl.png" />
 </div>
 
-For the past two months or so, I’ve only done work related programming. So to take the edge off, I decided to do some recreational programming and it popped into my head to try to implement edge detection. It’s something I’d never done before, and knew nothing about, so I knew it was sure to be a fun learning experience.
+For the past two months or so, I’ve only done work-related programming. So to take the edge off, I decided to do some recreational programming and it popped into my head to try to implement edge detection. It’s something I’d never done before and knew nothing about, so I knew it was sure to be a fun learning experience.
 
 Code: [Github](https://github.com/tobshub/edging)
 
-Like I said, I knew nothing about edge detection to begin with. So my first step was finding out the best (and/or easiest to implement) algorithm used for edge detection.
-And I stumbled on [this article](https://www.analyticsvidhya.com/blog/2022/08/comprehensive-guide-to-edge-detection-algorithms), which served as a good starting point and also helped me decide on which algorithm to implement: the canny edge detection algorithm.
+Like I said, I knew nothing about edge detection. So my first step was finding out the best (and/or easiest to implement) algorithm used for edge detection. I stumbled on [this article](https://www.analyticsvidhya.com/blog/2022/08/comprehensive-guide-to-edge-detection-algorithms), which served as a good starting point and also helped me decide on which algorithm to implement: the canny edge detection algorithm.
 
-I wanted to implement this in either C++ or Rust, to improve my skills and feel for either. And I later decided upon using Rust because the US government says I should.
-Also, it is at this point where I complain that most articles/tutorials on this topic are not only in python but end up using some library that obfuscates the actual important logic behind the steps in this algorithm (OpenCV, I’m looking at you).
+I wanted to implement this in either C++ or Rust, to improve my skills and feel for either. I later decided to use Rust because the US government says I should. 
+
+Also, it is at this point where I complain that most articles/tutorials on this topic are not only in Python but end up using some library that obfuscates the actual important logic behind the steps in this algorithm (OpenCV, I’m looking at you).
 
 ## Step 1: Grayscale
 
 The first step in the canny edge detection algorithm is applying a grayscale filter. Most non-grayscale images use either RGB or RGBA pixel representation. R G B standing for Red Green and Blue, with the A standing for Alpha (the transparency of the pixel). Each with values ranging from 0 to 255 (so 8 bits or an unsigned byte). This means that in an image using RGB every 3 byte values represent a single pixel, and with RGBA every 4 byte values represent a single pixel.
 
-Knowing the number of bytes that make up a single pixel (what I like to call pixel width) is important for iterating over the individual pixels of the image. If you used an RGB image in a grayscale implementation built for RGBA images only, it would mess up the image completely.
+Knowing the number of bytes that make up a single pixel (what I like to call pixel width) is important for iterating over the image's individual pixels. If you used an RGB image in a grayscale implementation built for RGBA images only, it would mess up the image completely.
 
-The last thing to consider is the grayscale method. There’s three accepted methods of grayscaling I could find:
+The last thing to consider is the grayscale method. There are three accepted methods of grayscaling I could find:
 
 - Average Method: you find the average of the RGB values of the pixel.
 - Luminosity Method: sum of the multiplication of each RGB value by a ratio of how they are perceived.
@@ -106,7 +106,7 @@ The Gaussian function (in one dimension) is defined as this beauty:
 
 > In practice, it is best to take advantage of the Gaussian blur’s separable property by dividing the process into two passes. In the first pass, a one-dimensional kernel is used to blur the image in only the horizontal or vertical direction. In the second pass, the same one-dimensional kernel is used to blur in the remaining direction. The resulting effect is the same as convolving with a two-dimensional kernel in a single pass, but requires fewer calculations.
 
-For this reason, I utilized the 1-D Gaussian function, and simply applied the resultant kernel in both directions.
+For this reason, I utilized the 1-D Gaussian function and simply applied the resultant kernel in both directions.
 
 ```rust
 const KERNEL_RADIUS: i32 = 2;
@@ -179,7 +179,7 @@ fn gaussian_blur(mut src: Vec<u8>, image_width: i32) -> Vec<u8> {
 }
 ```
 
-In our implementation, we assume that the input image byte array has a pixel width of 1 (i.e. grayscale has been applied). This allows us to simplify the implementation by taking every index of the byte array as a sole pixel of the image. We first apply the kernel in the x dimension and store the results in `dst`. Then we apply the kernel in the y dimension and store the results back in `src` (as we don't want the results from previous iterations in the y dimension to affect our results).
+In our implementation, we assume that the input image byte array has a pixel width of 1 (i.e. grayscale has been applied). This allows us to simplify the implementation by taking every index of the byte array as a sole pixel in the image. We first apply the kernel in the x dimension and store the results in `dst`. Then we apply the kernel in the y dimension and store the results back in `src` (as we don't want the results from previous iterations in the y dimension to affect our results).
 
 <div>
   <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl-blur.png" />
@@ -286,13 +286,13 @@ How do we know the neighboring pixels in its gradient direction? [Wikipedia](htt
 
 <blockquote>
 
-- if the rounded gradient angle is 0° (i.e. the edge is in the north–south direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the east and west directions,
+- if the rounded gradient angle is 0° (i.e. the edge is in the north-south direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the east and west directions,
 
-- if the rounded gradient angle is 90° (i.e. the edge is in the east–west direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the north and south directions,
+- if the rounded gradient angle is 90° (i.e. the edge is in the east-west direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the north and south directions,
 
-- if the rounded gradient angle is 135° (i.e. the edge is in the northeast–southwest direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the north-west and south-east directions,
+- if the rounded gradient angle is 135° (i.e. the edge is in the northeast-southwest direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the north-west and south-east directions,
 
-- if the rounded gradient angle is 45° (i.e. the edge is in the northwest–southeast direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the north-east and south-west directions.
+- if the rounded gradient angle is 45° (i.e. the edge is in the northwest-southeast direction) the point will be considered to be on the edge if its gradient magnitude is greater than the magnitudes at pixels in the north-east and south-west directions.
 </blockquote>
 
 With the above information, the implementation becomes simple:
@@ -354,7 +354,7 @@ fn gradient_thresholding(src: &[u8], image_width: usize) -> Vec<u8> {
 
 Notice we 2x `image_width` and iterate by twos, this is because the length of the resulting vector from `sobel_filter` is two times the size of the input image byte array (where each pair of bytes represents a single pixel's gradient magnitude and gradient direction).
 
-Also, when setting the value of each pixel, we normalise its value relative to the maximum obtained pixel gradient magnitude fron applying the Sobel filter.
+Also, when setting the value of each pixel, we normalise its value relative to the maximum obtained pixel gradient magnitude from applying the Sobel filter.
 
 <div>
   <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl-non-max.png" />
@@ -362,7 +362,7 @@ Also, when setting the value of each pixel, we normalise its value relative to t
 
 ## Step 5: Double Threshold
 
-The Double threshold step is simply and straighforward. We set a low threshold and a high threshold. Every gradient magnitude value below the low threshold gets set to 0. Every gradient magnitude value betweeen the low and high threshold gets set to the same low value and we consider them "weak" edges. And finally every gradient magnitude value above the high threshold gets set to the same high value (usually 255) and we consider them "strong" edges.
+The Double threshold step is simple and straightforward. We set a low threshold and a high threshold. Every gradient magnitude value below the low threshold gets set to 0. Every gradient magnitude value between the low and high threshold gets set to the same low value and we consider them "weak" edges. Finally, every gradient magnitude value above the high threshold gets set to the same high value (usually 255) and we consider them "strong" edges.
 
 ```rust
 fn double_threshold(src: &[u8]) -> Vec<u8> {
@@ -399,7 +399,7 @@ Why do we need this step? This is because the previous step (Non-max suppression
 
 The sixth and final step in the Canny edge detection algorithm. We use the results from the previous step to ensure that only true edges remain in the final image.
 
-We check the neighboring pixels of each "weak" edge pixel, and if any of them are "strong" edge pixels, then we turn the "weak" edge pixel to a "strong" edge pixel (because we can be sure it was not produced from noise). We do this "in-place" because we want previously weak pixels that are now "strong" to also make their neighboring pixels strong.
+We check the neighboring pixels of each "weak" edge pixel, and if any of them are "strong" edge pixels, then we turn the "weak" edge pixel into a "strong" edge pixel (because we can be sure it was not produced from noise). We do this "in-place" because we want previously weak pixels that are now "strong" to also make their neighboring pixels strong.
 
 ```rust
 fn hysteresis(mut src: Vec<u8>, image_width: i32) -> Vec<u8> {
@@ -441,15 +441,15 @@ fn hysteresis(mut src: Vec<u8>, image_width: i32) -> Vec<u8> {
 ```
 
 <div>
-  <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl-dt.png" />
+  <img src="https://raw.githubusercontent.com/Tobshub/edging/main/owl-hyst.png" />
 </div>
 
 ## Conclusion
 
-All-in-all, this was a very fun exercise. I learnt a lot, about computer vision, image processing and just math in general from research on specific technical terms used.
+All-in-all, this was a very fun exercise. I learnt a lot about computer vision, image processing and just math in general from research on specific technical terms used.
 
 It was super fun and cool to see how the image changed in each step, and how changing some values (or making some mistakes in the implementation) affected the resulting image.
 
-If you would like to see the full code (including the image loading and drawing the results), check out [the repo on my github](https://github.com/tobshub/edging).
+If you would like to see the full code (including the method of image loading and drawing the results), check out [the repo on my github](https://github.com/tobshub/edging).
 
 Thanks for reading and stay coding.
