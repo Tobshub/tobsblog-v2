@@ -12,6 +12,13 @@ export const SITE: Site = {
 
 export const PROJECTS = [
   {
+    name: "P2Tutor",
+    link: "https://p2tutor.vercel.app",
+    active: true,
+    description:
+      "A peer-to-peer tutoring platform that uses AI to intelligently match tutors and students based on their skills and interests",
+  },
+  {
     name: "Tuu-Duu",
     github: "https://github.com/Tobshub/Tuu-Duu",
     link: "https://tuu-duu.netlify.app",
@@ -22,18 +29,19 @@ export const PROJECTS = [
     name: "TobsDB",
     github: "https://github.com/Tobshub/tobsdb",
     description:
-      "A database built in in Golang, with a custom schema declaration syntax and easy to use queries",
+      "A database built from scratch in Golang, with a custom schema declaration syntax and a custom JSON based query language",
     active: true,
   },
   {
     name: "Worship Manager",
     link: "https://worshipmanager.org",
-    description: "Presentation software for Church to use during services",
+    description:
+      "Presentation software for churches to use during services/sermons",
     active: true,
   },
   {
     name: "Tobsmg",
-    description: "A private image server I built to host and share images",
+    description: "A private image server built to host and share images",
     github: "https://github.com/Tobshub/remote-img",
     active: true,
   },
@@ -43,6 +51,12 @@ export const PROJECTS = [
     active: true,
     github: "https://github.com/Tobshub/tobsdraw",
     link: "https://tobsdraw.vercel.app",
+  },
+  {
+    name: "Edging",
+    description: "An edge detection implementation in rust",
+    active: true,
+    github: "https://github.com/Tobshub/edging",
   },
 ];
 

@@ -8,14 +8,15 @@ import { PROJECTS } from "@config"
     PROJECTS.map((project) => (
       <li>
         {project.link ? (
-          <a href={project.link} title={project.description}>{project.name}</a>
+          <a href={project.link}>{project.name}</a>
         ) : 
-          <span title={project.description}>{project.name}</span>
+          <span>{project.name}</span>
         }
         {project.github ? 
           (<a href={project.github}>(View on Github)</a>)
           : null
         }
+    {project.description ? <span>=&gt; {project.description}</span> : null}
       </li>
     ))
   }
