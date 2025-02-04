@@ -2,7 +2,7 @@
 pubDatetime: 2023-08-06T12:00:00Z
 title: Why New Developers should be on Twitch
 postSlug: new-devs-and-twitch
-featured: true
+featured: false
 draft: false
 tags:
   - beginner

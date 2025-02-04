@@ -25,7 +25,7 @@ Code: [Github](https://github.com/tobshub/edging)
 
 Like I said, I knew nothing about edge detection. So my first step was finding out the best (and/or easiest to implement) algorithm used for edge detection. I stumbled on [this article](https://www.analyticsvidhya.com/blog/2022/08/comprehensive-guide-to-edge-detection-algorithms), which served as a good starting point and also helped me decide on which algorithm to implement: the canny edge detection algorithm.
 
-I wanted to implement this in either C++ or Rust, to improve my skills and feel for either. I later decided to use Rust because the US government says I should. 
+I wanted to implement this in either C++ or Rust, to improve my skills and feel for either. I later decided to use Rust because the US government says I should.
 
 Also, it is at this point where I complain that most articles/tutorials on this topic are not only in Python but end up using some library that obfuscates the actual important logic behind the steps in this algorithm (OpenCV, I’m looking at you).
 
@@ -278,7 +278,7 @@ fn sobel_filter(src: &[u8], image_width: i32) -> Vec<i32> {
 
 ## Step 4: Non-Max Suppression
 
-This step (also called gradient magnitude thresholding or lower bound cut-off suppression) entails using the results from the sobel filter step to determine if a pixel is truly an edge. 
+This step (also called gradient magnitude thresholding or lower bound cut-off suppression) entails using the results from the sobel filter step to determine if a pixel is truly an edge.
 
 We check each pixel's gradient magnitude is the greatest of its neighboring pixels in its gradient direction. If it does, then we preserve its value. Else, we set its value to zero.
 

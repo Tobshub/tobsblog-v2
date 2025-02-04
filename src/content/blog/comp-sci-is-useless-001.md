@@ -2,7 +2,7 @@
 pubDatetime: 2024-11-17T12:00:00Z
 title: "Comp Sci is Useless"
 postSlug: comp-sci-is-useless-001
-featured: true
+featured: false
 draft: false
 tags:
   - university
