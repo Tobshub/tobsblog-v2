@@ -19,13 +19,6 @@ export const PROJECTS = [
       "A peer-to-peer tutoring platform that uses AI to intelligently match tutors and students based on their skills and interests",
   },
   {
-    name: "Tuu-Duu",
-    github: "https://github.com/Tobshub/Tuu-Duu",
-    link: "https://tuu-duu.netlify.app",
-    description: "Project planner and habit tracker web app",
-    active: true,
-  },
-  {
     name: "TobsDB",
     github: "https://github.com/Tobshub/tobsdb",
     description:
@@ -33,11 +26,24 @@ export const PROJECTS = [
     active: true,
   },
   {
+    name: "Edging",
+    description: "An edge detection implementation in rust",
+    active: true,
+    github: "https://github.com/Tobshub/edging",
+  },
+  {
     name: "Worship Manager",
     link: "https://worshipmanager.org",
     description:
       "Presentation software for churches to use during services/sermons",
     active: true,
+  },
+  {
+    name: "Invoicestack",
+    description:
+      "Simple web app for creating, managing, sending and settling invoices.",
+    active: true,
+    github: "https://github.com/Tobshub/invoicestack",
   },
   {
     name: "Tobsmg",
@@ -53,10 +59,11 @@ export const PROJECTS = [
     link: "https://tobsdraw.vercel.app",
   },
   {
-    name: "Edging",
-    description: "An edge detection implementation in rust",
+    name: "Tuu-Duu",
+    github: "https://github.com/Tobshub/Tuu-Duu",
+    link: "https://tuu-duu.netlify.app",
+    description: "Project planner and habit tracker web app",
     active: true,
-    github: "https://github.com/Tobshub/edging",
   },
 ];
 
